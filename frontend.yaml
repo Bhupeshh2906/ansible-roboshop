@@ -50,6 +50,7 @@
       ansible.builtin.copy:
        src: "/home/ec2-user/nginx.conf"
        dest: "/etc/nginx/nginx.conf"
+       remote_src: yes
     
     - name: "Restart nginx service"
       ansible.builtin.service:
