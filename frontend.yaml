@@ -48,7 +48,7 @@
     
     - name: "adding nginx configuration"
       ansible.builtin.copy:
-       src: "/home/ec2-user/nginx.conf"
+       src: "./nginx.conf"
        dest: "/etc/nginx/nginx.conf"
        remote_src: yes
     
