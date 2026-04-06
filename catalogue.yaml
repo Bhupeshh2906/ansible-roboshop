@@ -40,13 +40,10 @@
         dest: "/app"
         remote_src: yes
     
-    - name: "dependency for npm"
-      ansible.builtin.command:
-        cd /app
+    - name: Install Node.js dependencies
+      ansible.builtin.npm:
+        path: /app
 
-    - name: "dependency for npm"
-      ansible.builtin.command:
-        npm install 
 
     - name: "Adding catalogue service configuration"
       ansible.builtin.copy:
