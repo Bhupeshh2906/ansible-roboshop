@@ -1,0 +1,34 @@
+- name: "MongoDB"
+  hosts: "mongodb.projectprac.fun"
+  become: yes
+  tasks:
+    - name: "Setup the mongodb repo file"
+      ansible.builtin.copy:
+        src: "mongodb.repo"
+        dest: "/etc/yum.repos.d/mongodb.repo"
+
+    - name: "Install MongoDB" 
+      ansible.builtin.dnf:
+        name: "mongodb-org"
+        state: present
+
+    - name: "start and enable MongoDB"
+      ansible.builtin.service:
+        name: "mongod" 
+        state: "started"
+        enabled: yes
+    
+    - name: "Editing mongod configuration"
+      ansible.builtin.replace:
+        path: "/etc/mongod.conf"
+        regexp: "127.0.0.1"
+        replace: "0.0.0.0"
+    
+    - name: "Restart the service"
+      ansible.builtin.service:
+        name: "mongod"
+        state: "restarted"
+
+    
+
+
